@@ -1,0 +1,35 @@
+{
+  "name": "debounce-save",
+  "version": "1.0.4",
+  "description": "autoSave debounce save",
+  "main": "lib/index.min.js",
+  "scripts": {
+    "test": "text"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuaiadong/debounce-save.git"
+  },
+  "keywords": [
+    "debounce",
+    "save",
+    "autosave"
+  ],
+  "author": "one_zhd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuaiadong/debounce-save/issues"
+  },
+  "homepage": "https://github.com/shuaiadong/debounce-save#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  }
+}
+
