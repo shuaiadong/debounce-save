@@ -2,4 +2,4 @@
 
 ### Features
 
-- init ([3cc2975](https://github.com/shuaiadong/debounce-save/commit/3cc2975))
+- init commit changelog ([19f3e96](https://github.com/shuaiadong/debounce-save/commit/19f3e96))

@@ -5,6 +5,8 @@
   "main": "lib/index.min.js",
   "scripts": {
     "test": "text",
+    "build": "webpack --mode production --config ./webpack.config.js",
+    "dev": "webpack --mode development --config ./webpack.config.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "husky": {
@@ -34,11 +36,23 @@
   },
   "homepage": "https://github.com/shuaiadong/debounce-save#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-conventional": "^7.6.0",
+    "babel-loader": "^8.0.6",
     "conventional-changelog-cli": "^2.0.21",
-    "pretty-quick": "^1.11.0",
     "husky": "^1.1.2",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "pretty-quick": "^1.11.0",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "lodash": "^4.17.11"
   }
 }
