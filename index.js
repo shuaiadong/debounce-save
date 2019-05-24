@@ -1,1 +1,2 @@
-export default 'index'
+import autoSave from './autoSave.js'
+export default autoSave
