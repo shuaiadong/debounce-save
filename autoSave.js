@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 
 /**
  * 1. 自动保存防抖
@@ -21,6 +21,30 @@ import debounce from 'lodash/debounce'
  *     - exit           | func
  *
  */
+
+const _Utils_ = {
+  addEvent(element, type, callback) {
+    if (element.addEventListener) {
+      element.addEventListener(type, callback, false)
+    } else if (element.attachEvent) {
+      element.attachEvent('on' + type, callback)
+    } else {
+      element['on' + type] = callback
+    }
+  },
+  removeEvent(element, type, callback) {
+    if (element.removeEventListener) {
+      element.removeEventListener(type, callback, false)
+    } else if (element.detachEvent) {
+      element.detachEvent('on' + type, callback)
+    } else {
+      element['on' + type] = null
+    }
+  },
+  isFunc(func) {
+    typeof func === 'function'
+  }
+}
 
 class AutoSave {
   constructor(props) {
@@ -46,21 +70,21 @@ class AutoSave {
   saved = true
 
   // 统一处理保存事
-  async _save() {
+  async _save(...args) {
     if (this.saved || !this.opts.onSave) {
       return
     }
-    if (this.opts.onBeforeSave && this.opts.onBeforeSave(...arguments) === false) {
+    if (this.opts.onBeforeSave && this.opts.onBeforeSave(...args) === false) {
       return
     }
-    await this.opts.onSave(...arguments)
+    await this.opts.onSave(...args)
     this.removeBeforunload()
   }
 
   // 私有防抖的_save
   _debouncedSave = debounce(
     this._save,
-    this.opts.wait || 200,
+    this.opts.wait,
     {},
     {
       leading: this.opts.leading,
@@ -71,24 +95,24 @@ class AutoSave {
   )
 
   // 暴露的 onSave 调用方法
-  debouncedSave() {
+  debouncedSave(...args) {
     this.saved && this.addBeforunload()
-    this._debouncedSave(...arguments)
+    this._debouncedSave(...args)
   }
   // 直接保存
-  save() {
+  save(...args) {
     this.saved = false
-    this._save(...arguments)
+    this._save(...args)
   }
   // debounced 取消
   cancel = () => {
-    this.removeBeforunload()
     this._debouncedSave.cancel()
+    this.removeBeforunload()
   }
   // 清空
   flush = () => {
-    this.removeBeforunload()
     this._debouncedSave.flush()
+    this.removeBeforunload()
   }
 
   /**
@@ -126,36 +150,12 @@ class AutoSave {
       // 未绑定 beforeunload 数据没发生变化
       return
     }
-    this._save()
+    this._save && this._save()
   }
 }
 
 export default function autoSaveWrap(props) {
   return new AutoSave(props)
-}
-
-const _Utils_ = {
-  addEvent: function(element, type, callback) {
-    if (element.addEventListener) {
-      element.addEventListener(type, callback, false)
-    } else if (element.attachEvent) {
-      element.attachEvent('on' + type, callback)
-    } else {
-      element['on' + type] = callback
-    }
-  },
-  removeEvent: function(element, type, callback) {
-    if (element.removeEventListener) {
-      element.removeEventListener(type, callback, false)
-    } else if (element.detachEvent) {
-      element.detachEvent('on' + type, callback)
-    } else {
-      element['on' + type] = null
-    }
-  },
-  isFunc: function(func) {
-    typeof func === 'function'
-  }
 }
 
 // // todo
@@ -164,6 +164,6 @@ const _Utils_ = {
 //  * 1. debounce 提供的方法 暴露
 //  * 2. 直接保存的方法
 //  * 3. mobx autoSave
-//  * 问题:
+//  * 问题: 待定？
 //  * [X] debounce触发时在获取的数据 不一定是本次的数据
 //  */
