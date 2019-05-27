@@ -19,32 +19,53 @@ export default class Apps extends React.Component {
     }
   
     render () {
-        console.log(this.local)
       return (
         <div className="App">
             <button
             onClick= {
                 () => {
-                    debugger
-                    this.local.autoSave.debouncedSave()
+                    this.local.autoSave.save()
                     // this.local.autoSave.save()
                 }
             }
             > 直接保存(save) </button><span>直接保存后之前的debouncedSave也不会触发</span>
             <br/>
             <br/>
-            <button> debouncedSave (延时保存)</button>
+            <button
+            onClick= {
+              () => {
+                  // this.local.autoSave.()
+                  // this.local.autoSave.save()
+              }
+          }
+            > debouncedSave (延时保存) 直接在textarea输入文字等待 </button>
             <br/>
             <br/>
-            <button> 取消 debounced (cancel) </button>
+            <button
+            onClick= {
+              () => {
+                  this.local.autoSave.cancel()
+              }}
+            > 取消 debounced (cancel) </button>
             <br/>
             <br/>
-            <button>exit</button><br/>
+            <button
+            onClick= {
+              () => {
+                  this.local.autoSave.exit()
+              }}
+            >exit 退出 </button><br/>
   
-            <textarea 
-            value={this.local.saveData.textVal} 
+            <textarea
+              style= {
+                {width: '70%', height: '200px'}
+              }
+            value={this.local.saveData.textVal}
+
             onChange={({target: {value}}) => {
-              this.local.upata({textVal: value})
+
+              this.local.setProps(this.local.saveData, {textVal: value})
+
             }
           }
             ></textarea>

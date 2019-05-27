@@ -57,8 +57,8 @@ export default class Apps extends React.Component {
 
     render() {
         return <div>
-                 <div>
-                 {this.local.saveInfo}
+                 <div
+                 dangerouslySetInnerHTML={{__html: this.local.saveInfo}}>
                  </div>
 
                  <br/>
