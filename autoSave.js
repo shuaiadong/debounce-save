@@ -51,6 +51,7 @@ class AutoSave {
     this.debouncedSave = this.debouncedSave.bind(this)
     Object.assign(this.opts, props)
   }
+  startTime = ''
   opts = {
     // 默认入参
     wait: 2000, // 防抖时间
@@ -96,6 +97,10 @@ class AutoSave {
 
   // 暴露的 onSave 调用方法
   debouncedSave(...args) {
+    // this.startTime && (this.startTime = Date.now());
+    // if(Date.now() - this.startTime > this.opts.wait) {
+    //   return this.save() // 直接保存
+    // }
     this.saved && this.addBeforunload()
     this._debouncedSave(...args)
   }
@@ -134,6 +139,7 @@ class AutoSave {
     }
     _Utils_.removeEvent(window, 'beforeunload', this.saveBeforeClosing)
     this.saved = true
+    // this.startTime = '';
   }
 
   saveBeforeClosing = e => {

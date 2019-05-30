@@ -8,6 +8,8 @@ module.exports = {
   output: {
     filename: '[name].min.js',
     path: path.resolve(__dirname, './lib'),
+
+    // path: path.resolve(__dirname, './_demo/node_modules/debounce-save/lib/'),
     libraryTarget: 'commonjs2'
   },
   devtool: 'source-map',

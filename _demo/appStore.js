@@ -17,7 +17,7 @@ export default class Store {
         onBeforeSave: this.beforeSave,
         leading: true,
         trailing: false,
-        maxWait: 200
+        // maxWait: 200
       });
 
       // 观测数据的改变

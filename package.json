@@ -16,9 +16,7 @@
     }
   },
   "jest": {
-    "testMatch": [
-      "**/__test{s,}__/*.(spec|test).{t,j}s{x,}"
-    ]
+    "testRegex": "/test/.*.test.js?$"
   },
   "commitlint": {
     "extends": [
@@ -48,6 +46,7 @@
     "@babel/preset-env": "^7.4.5",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-conventional": "^7.6.0",
+    "axios": "^0.18.0",
     "babel-loader": "^8.0.6",
     "conventional-changelog-cli": "^2.0.21",
     "husky": "^1.1.2",
