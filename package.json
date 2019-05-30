@@ -1,6 +1,6 @@
 {
   "name": "debounce-save",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "autoSave debounce save",
   "main": "lib/index.min.js",
   "scripts": {
