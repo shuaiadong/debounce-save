@@ -28,17 +28,16 @@ export default class Apps extends React.Component {
                     // this.local.autoSave.save()
                 }
             }
-            > 直接保存(save) </button><span>直接保存后之前的debouncedSave也不会触发</span>
+            > 直接调用保存(save) </button><span>直接保存后之前的debouncedSave也不会触发</span>
             <br/>
             <br/>
             <button
             onClick= {
               () => {
-                  // this.local.autoSave.()
-                  // this.local.autoSave.save()
+                 this.local.autoSave.debouncedSave()
               }
           }
-            > debouncedSave (延时保存) 直接在textarea输入文字等待 </button>
+            > debouncedSave (延时保存)  / 直接在textarea输入文字等待 </button>
             <br/>
             <br/>
             <button

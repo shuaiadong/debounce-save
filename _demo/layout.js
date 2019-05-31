@@ -21,8 +21,8 @@ export default class Apps extends React.Component {
             // 默认参数
                      wait: 2000,                   // default 防抖时间
                      onSave: null,                 // 自动保存事件(ajax)
-                     onBeforeSave: null,           // 调用onSave 之前调用 
-                     saveMessage: '确定要离开吗？',   // 提示语
+                     onBeforeSave: null,           // 调用onSave 之前调用 return false可以阻止 ajax
+                     saveMessage: '确定要离开吗？',   // 提示语 ie 7 \ 8 浏览器支持
                      leading: false,               // 超时前调用
                      maxWait: 1,                   // 延迟的最长时间
                      trailing: true,               // 超时后调用
@@ -66,7 +66,14 @@ export default class Apps extends React.Component {
                         {
                         showReanme: !this.local.showReanme
                         }
-                    )}> 模拟组件 </button>
+                    )}> 模拟组件卸载 </button>
+                    <pre>
+                    {`
+                      在组件componentWillUnmount 调用autoSave的exit() 
+                          1. 防止数据丢失
+                      `}
+                        
+                    </pre>
                  <br/>
 
                  { this.local.showReanme && this.renderRadme()}

@@ -1,5 +1,4 @@
-> npm install
-or
-> yarn
+###  start
+> 1. npm install or yarn
 
-启动项目 npm run server
+> 2. npm run server
