@@ -1,4 +1,4 @@
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 /**
  * 1. 自动保存防抖
