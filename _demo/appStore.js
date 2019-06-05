@@ -3,6 +3,14 @@ import autoSave from 'debounce-save'
 import axios from 'axios'
 import moment from 'moment'
 
+function save () {
+        return new Promise((res, rej) => {
+          setTimeout(()=> {
+            res({status: 200})
+          }, 1000)
+        })
+}
+
 export default class Store {
     static key = 'app'
     constructor() {
@@ -46,12 +54,15 @@ export default class Store {
       }
     
       
+      
       postSave = async () => {
-        const {status, data} = await axios.post('/save', {
-          data: {
-            // data: this.local.saveData.textVal
-          }
-        });
+        // const {status, data} = await axios.post('/save', {
+        //   data: {
+        //     data: this.saveData.textVal
+        //   }
+        // });
+        const {status} = await save(); 
+      
         status === 200 && (
           this.saveInfo = this.saveInfo + `<p>${moment().format('YYYY-MM-DD HH:mm:ss')} 自动保存成功</p>`
         )

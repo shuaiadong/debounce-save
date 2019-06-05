@@ -1,8 +1,11 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const env = 'developmnet'
-module.exports =  {
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+module.exports = function (envs, argv) {
+    const env = argv.mode  === 'development' ?  true : false;
+    console.log(env, 'env')
+return {
         devServer: {
             // proxy: {
             //     '/comments': {
@@ -46,6 +49,7 @@ module.exports =  {
 
          // 插件
          plugins: [
+             new CleanWebpackPlugin(),
              new HtmlWebpackPlugin({
                  template: path.resolve(__dirname, './index.html')
              })
@@ -64,3 +68,4 @@ module.exports =  {
              ]
          }
      }
+}
