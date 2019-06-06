@@ -5,16 +5,23 @@
 > yarn add debounce-save
 
 ### 触发自动保存的场景
+
 - 数据改发生变时
 - 用户关闭页面时
 - 组件卸载时
 
+### live demo
+
+[demo](https://shuaiadong.github.io/debounce-save/index.html#/)
+
 ### 注意事项
-> autosave 提供了`save` `debouncedSave` ` cancel` ...`api`不要直接调用 ajax请求 -> 破坏 autoSave 内部的生态系统
-  - 例如 
-     - 用户操作 修改了本次周报 切换 上周周报 
-     - state 的数据变成了上周
-     - 因为 debounced 是延时执行，触发时 -> 获取数据是上周的数据
+
+> autosave 提供了`save` `debouncedSave` `cancel` ...`api`不要直接调用 ajax 请求 -> 破坏 autoSave 内部的生态系统
+
+- 例如
+  - 用户操作 修改了本次周报 切换 上周周报
+  - state 的数据变成了上周
+  - 因为 debounced 是延时执行，触发时 -> 获取数据是上周的数据
 
 > 解决方案 - 用户切换时应该马上触发保存 `api` save
 
@@ -53,51 +60,51 @@ exit
 ```
 
 ### Usage
-``` js
-import React, {Component} from 'react';
-import autoSave from 'debounce-save';
+
+```js
+import React, { Component } from 'react'
+import autoSave from 'debounce-save'
 
 export default class AutoSave extends Component {
-      constructor(props) {
-      super(props)
-          this.autoSave = autoSave({
-               onSave: () => {
-                    setTimeout(() => {
-                      this.setState({log: `value = ${this.state.value},  success`})
-                    }, 0)
-                    }
-          });
-        }
-          state = {
-               value: '',
-               log: 'log',
-          }
-          /**
-           * autoSave({})
-           * return ->
-           *         debouncedSave
-           *         save
-          */
+  constructor(props) {
+    super(props)
+    this.autoSave = autoSave({
+      onSave: () => {
+        setTimeout(() => {
+          this.setState({ log: `value = ${this.state.value},  success` })
+        }, 0)
+      }
+    })
+  }
+  state = {
+    value: '',
+    log: 'log'
+  }
+  /**
+   * autoSave({})
+   * return ->
+   *         debouncedSave
+   *         save
+   */
 
-         render() {
-              return <div>
-              <p>{this.state.log}</p>
-              <input 
-              value = {this.state.value}
-               onChange = {({target: {value}}) => {
-                 this.setState(
-                   {value}, 
-                    () => this.autoSave.debouncedSave()
-                    )
-                  }
-               }
-              />
-              </div>
-
-         }
-     }
+  render() {
+    return (
+      <div>
+        <p>{this.state.log}</p>
+        <input
+          value={this.state.value}
+          onChange={({ target: { value } }) => {
+            this.setState({ value }, () => this.autoSave.debouncedSave())
+          }}
+        />
+      </div>
+    )
+  }
+}
 ```
+
 ### demo
-- cd _demo
+
+- cd \_demo
 - npm i
 - npm run server
