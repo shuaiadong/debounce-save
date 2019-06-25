@@ -33,6 +33,21 @@ jobs:
         - npm test
         - echo "Testing Finished."
 
+    - stage: gh-page
+      script:
+        - echo "gh-page  push..."
+        - npm version
+        - cd _demo
+        - npm run build
+        - cd ./dist
+        - git init
+        - git config user.name "${USER_NAME}"
+        - git config user.email "${USER_EMAIL}"
+        - git add .
+        - git commit -m "_demo deployment"
+        - git push --force --quiet "https://${test_token}@${GH_REF}" master:${P_BRANCH}
+        - echo "gh=page - end"
+
     - stage: deploy
       script:
         - echo "NPM Deploying Started ..."
