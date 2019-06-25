@@ -18,7 +18,7 @@ import debounce from 'lodash/debounce'
  *  4. 清空
  *      - flush          | func
  *  5. 退出
- *     - exit           | func
+ *      - exit           | func
  *
  */
 
