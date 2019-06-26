@@ -38,13 +38,14 @@ jobs:
         - echo "gh-page  push..."
         - npm version
         - cd _demo
+        - npm install
         - npm run build
         - cd ./dist
         - git init
         - git config user.name "${USER_NAME}"
         - git config user.email "${USER_EMAIL}"
         - git add .
-        - git commit -m "_demo deployment"
+        - git commit -m "_demo build"
         - git push --force --quiet "https://${test_token}@${GH_REF}" master:${P_BRANCH}
         - echo "gh=page - end"
 
