@@ -42,11 +42,11 @@ jobs:
         - npm run build
         - cd ./dist
         - git init
-        - git config user.name "${USER_NAME}"
-        - git config user.email "${USER_EMAIL}"
+        - git config user.name "${U_NAME}"
+        - git config user.email "${U_EMAIL}"
         - git add .
-        - git commit -m "_demo build"
-        - git push --force --quiet "https://${test_token}@${GH_REF}" master:${P_BRANCH}
+        - git commit -m "demo-build"
+        - git push --force --quiet "https://${test_token}@${GH_REF}" master:${PAGE_BRANCH}
         - echo "gh=page - end"
 
     - stage: deploy
