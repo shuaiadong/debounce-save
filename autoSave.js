@@ -1,6 +1,35 @@
 import debounce from 'lodash/debounce'
 
 /**
+ * autoSave
+ * @public
+ * @param {options}
+ * @return {saveHelp}
+ */
+
+/**
+ * @public
+ * @typedef {{}} options
+ * @param  {number} [wait = 2000] - 防抖时间
+ * @param  {function} [onSave] - 自动保存事件
+ * @param  {function} [onBeforeSave] - 调用_save保存之前调用 return false 取消 保存
+ * @param  {string} [saveMessage = 确定要离开吗？]
+ * @param  {boolean} [leading = false] - 超时前调用
+ * @param  {number} [maxWait = 0] -  延迟的最长时间
+ * @param  {boolean} [trailing = true] - 超时后调用
+ */
+
+/**
+ * @public
+ * @typedef {{}} saveHelp
+ * @param  {function} [debouncedSave] - debounced save
+ * @param  {function} [save] - 直接保存
+ * @param  {function} [cancel] - 取消当前的debouncedSave
+ * @param  {function} [flush] - 清空
+ * @param  {function} [exit] - 退出
+ */
+
+/**
  * 1. 自动保存防抖
  * 2. 离开浏览器 | 刷新浏览器 - 选择取消时保存
  * 3. 组件卸载时保存
