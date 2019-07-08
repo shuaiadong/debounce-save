@@ -29,14 +29,16 @@ import debounce from 'lodash/debounce'
  * @param  {function} [exit] - 退出
  */
 
-/**
+//
+//
+/*
  * 1. 自动保存防抖
  * 2. 离开浏览器 | 刷新浏览器 - 选择取消时保存
  * 3. 组件卸载时保存
  */
 
 // 返回值
-/**
+/*
  *
  *  1.  debouncedSave
  *      - debouncedSave  | func
@@ -92,7 +94,7 @@ class AutoSave {
     trailing: true // 超时后调用
   }
 
-  /**
+  /*
    *  true > 可以绑定定时间
    *  || 为了不重复绑定事件
    *  || 数据改变的识别
@@ -149,7 +151,7 @@ class AutoSave {
     this.removeBeforunload()
   }
 
-  /**
+  /*
    * window.unload | exit
    *  1. Beforeunload 处理
    *  2. 组件销毁时：路由切换页面时
@@ -176,7 +178,7 @@ class AutoSave {
     this._save && setTimeout(this._save, 100) // 关闭选择取消时保存
     return ((e || window.event).returnValue = this.opts.saveMessage) // Gecko + IE
   }
-  /**
+  /*
    * 组件销毁 点击路由切换时调用
    * 直接调用保存
    *  */
@@ -194,7 +196,7 @@ export default function autoSaveWrap(props) {
 }
 
 // // todo
-// /**
+// /*
 //  *
 //  * 1. debounce 提供的方法 暴露
 //  * 2. 直接保存的方法

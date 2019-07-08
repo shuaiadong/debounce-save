@@ -46,14 +46,10 @@
 
 - [\_Utils\_](#_utils_)
   - [Parameters](#parameters)
-- [\_Utils\_](#_utils_-1)
-- [\_Utils\_](#_utils_-2)
 - [options](#options)
   - [Parameters](#parameters-1)
 - [saveHelp](#savehelp)
   - [Parameters](#parameters-2)
-- [addBeforunload](#addbeforunload)
-- [exit](#exit)
 
 ## \_Utils\_
 
@@ -64,25 +60,6 @@ autoSave
 - `options`
 
 Returns **[saveHelp](#savehelp)**
-
-## \_Utils\_
-
-1.  自动保存防抖
-2.  离开浏览器 | 刷新浏览器 - 选择取消时保存
-3.  组件卸载时保存
-
-## \_Utils\_
-
-1.  debouncedSave
-    - debouncedSave | func
-2.  直接保存
-    - save | func
-3.  取消 debounced
-    - cancel | func
-4.  清空
-    - flush | func
-5.  退出
-    - exit | func
 
 ## options
 
@@ -109,23 +86,6 @@ Type: {}
 - `cancel` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** 取消当前的 debouncedSave
 - `flush` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** 清空
 - `exit` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** 退出
-
-##
-
-true > 可以绑定定时间
-|| 为了不重复绑定事件
-|| 数据改变的识别
-
-## addBeforunload
-
-window.unload | exit
-1\. Beforeunload 处理
-2\. 组件销毁时：路由切换页面时
-
-## exit
-
-组件销毁 点击路由切换时调用
-直接调用保存
 
 # Usage
 
