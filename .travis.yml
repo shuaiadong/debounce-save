@@ -41,13 +41,14 @@ jobs:
         - npm install
         - npm run build
         - cd ./dist
-        - git init
-        - git config user.name "${U_NAME}"
-        - git config user.email "${U_EMAIL}"
-        - git add .
-        - git commit -m "demo-build"
-        - git push --force --quiet https://${GIT_TOKEN}@${GH_REF} master:${PAGE_BRANCH}
-        - echo "gh=page - end"
+
+        # - git init
+        # - git config user.name "${U_NAME}"
+        # - git config user.email "${U_EMAIL}"
+        # - git add .
+        # - git commit -m "demo-build"
+        # - git push --force --quiet https://${GIT_TOKEN}@${GH_REF} master:${PAGE_BRANCH}
+        # - echo "gh=page - end"
 
     - stage: deploy
       script:
@@ -56,10 +57,19 @@ jobs:
         - npm run build
         - echo "NPM Building Finished."
 
+      # deploy:
+      #   provider: npm
+      #   email: 13129944389@163.com
+      #   api_key: '$NPM_TOKEN'
+      #   skip_cleanup: true
+      #   on:
+      #     tags: true
+
       deploy:
-        provider: npm
-        email: 13129944389@163.com
-        api_key: '$NPM_TOKEN'
+        local_dir: ./_demo/dist
+        provider: pages
         skip_cleanup: true
+        github_token: $GIT_TOKEN # Set in the settings page of your repository, as a secure variable
+        keep_history: true
         on:
-          tags: true
+          branch: master
