@@ -1,4 +1,4 @@
-declare const autoSave: {
+type AutoSaveOptions = {
   wait?: number
   onSave: () => {}
   onBeforeSave?: () => boolean
@@ -8,4 +8,10 @@ declare const autoSave: {
   trailing?: boolean
 }
 
-export = autoSave
+export = (opts: AutoSaveOptions) => ({
+  debouncedSave: () => {},
+  save: () => {},
+  cancel: () => {},
+  flush: () => {},
+  exit: () => {}
+})

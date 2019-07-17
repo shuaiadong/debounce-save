@@ -21,7 +21,7 @@ export default class Apps extends React.Component {
     render () {
       return (
         <div className="App">
-            <p>ci  demo</p>
+            <p>ci  demo </p>
             <button
             onClick= {
                 () => {

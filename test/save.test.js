@@ -21,4 +21,6 @@ test('直接保存 save 10 次', done => {
   for (let i = 0; i < 10; i++) {
     save.save()
   }
+  const x = jest.fn(() => {})
+  expect(x).toBeCalledTimes(1231)
 })
