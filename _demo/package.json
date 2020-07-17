@@ -46,7 +46,7 @@
     "koa": "^2.7.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mini-css-extract-plugin": "^0.6.0",
     "opn": "^6.0.0",
     "plop": "^2.3.0",
